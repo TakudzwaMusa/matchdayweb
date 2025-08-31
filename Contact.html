@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matchday Superfan - Contact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="w-full bg-black/70 fixed top-0 left-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center h-16">
+      <div class="text-white font-bold text-xl">Matchday Superfan</div>
+      <ul class="flex space-x-6">
+        <li><a href="index.html" class="text-white hover:text-pink-500 transition">Home</a></li>
+        <li><a href="Benefits.html" class="text-white hover:text-pink-500 transition">Benefits</a></li>
+        <li><a href="AppInfo.html" class="text-white hover:text-pink-500 transition">App Info</a></li>
+        <li><a href="Gallery.html" class="text-white hover:text-pink-500 transition">Gallery</a></li>
+        <li><a href="Contact.html" class="text-pink-500 font-semibold">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Contact Us</h1>
+      <p class="hero-subtitle">We’d love to hear from you! Drop us a message below.</p>
+    </div>
+  </header>
+
+  <!-- Contact Form Section -->
+  <main class="py-20 max-w-4xl mx-auto px-6">
+    <section class="app-section">
+      <h2 class="section-heading">Send a Message</h2>
+      <p class="section-text mb-6">Use the form below to reach out to us. All fields are optional for now as this is a dummy form.</p>
+
+      <form class="space-y-6">
+        <div>
+          <label for="name" class="block font-semibold mb-1 text-gray-700">Name</label>
+          <input type="text" id="name" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label for="email" class="block font-semibold mb-1 text-gray-700">Email</label>
+          <input type="email" id="email" placeholder="Your Email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label for="subject" class="block font-semibold mb-1 text-gray-700">Subject</label>
+          <input type="text" id="subject" placeholder="Subject" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label for="message" class="block font-semibold mb-1 text-gray-700">Message</label>
+          <textarea id="message" rows="6" placeholder="Your Message" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"></textarea>
+        </div>
+
+        <button type="submit" class="px-6 py-3 bg-pink-600 text-white rounded-2xl font-semibold shadow-lg hover:bg-pink-500 transition">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-10">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold text-white mb-3">Matchday Superfan</h3>
+        <p>Where fans connect, share, and celebrate their passions together.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-3">Quick Links</h3>
+        <ul>
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="Benefits.html" class="hover:text-white">Benefits</a></li>
+          <li><a href="AppInfo.html" class="hover:text-white">App Info</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-3">Stay Connected</h3>
+        <p>Follow us on social media for updates and fan events.</p>
+      </div>
+    </div>
+    <div class="mt-10 text-center text-gray-500 text-sm">
+      &copy; 2025 Matchday Superfan. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
