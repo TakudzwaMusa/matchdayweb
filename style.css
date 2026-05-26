@@ -1,0 +1,662 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Hero Image Greyed Out */
+.hero-img {
+  filter: grayscale(80%) brightness(70%);
+}
+
+/* Hero Text - Mobile Optimized */
+.hero-title {
+  font-size: 1.8rem; /* smaller on mobile */
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1rem; /* reduced size */
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+/* Section Titles - Mobile Optimized */
+.section-title {
+  font-size: 1.3rem;       /* reduced from 1.5rem */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+
+  /* Gradient text */
+  background: linear-gradient(to right, var(--pink), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.section-title-white {
+  font-size: 1.3rem;       /* reduced from 1.5rem */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+/* Gradient Border for Cards */
+.gradient-border-wrapper {
+  background: linear-gradient(90deg, #e14abd, #425e91);
+  border-radius: 1rem;
+  padding: 2px;
+}
+
+.card-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem; /* reduced from 2rem */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+:root {
+  --pink: #e14abd;
+  --blue: #425e91;
+}
+
+.card-gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 1.5rem;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.card-gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -2px; bottom: -2px; right: -2px;
+  background: linear-gradient(135deg, #e14abd, #425e91);
+  border-radius: 1.5rem;
+  z-index: -1;
+}
+
+.card-gradient-border > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Funky gradient border for main content card */
+.funky-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: white;
+  z-index: 0;
+}
+
+.funky-card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, #e14abd, #425e91, #fbc02d, #4caf50);
+  border-radius: 1.5rem;
+  z-index: -1;
+}
+
+/* Funky gradient border for sidebar card */
+.groovy-border {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: white;
+  z-index: 0;
+}
+
+.groovy-border::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, #ff6ec4, #7873f5, #42f5d9);
+  border-radius: 1.5rem;
+  z-index: -1;
+}
+
+/* Make content stay above border */
+.funky-card > *, .groovy-border > * {
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--pink), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Gradient Card */
+.gradient-card {
+  background: linear-gradient(135deg, var(--pink), var(--blue));
+  color: #fff;
+  border-radius: 1.5rem;
+  padding: 1.5rem; /* reduced from 2rem */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.gradient-card h3 {
+  font-size: 1.1rem; /* reduced from 1.25rem */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.gradient-card p {
+  color: #fff;
+  opacity: 0.9;
+  font-size: 0.95rem; /* added for mobile */
+  line-height: 1.5;
+}
+
+/* Gradient Buttons */
+.btn-gradient {
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  color: #fff;
+  padding: 10px 22px; /* reduced from 12px 28px */
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem; /* added for mobile */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  background: #f7f7f7;
+  color: #222;
+  line-height: 1.5; /* reduced from 1.6 */
+  font-size: 0.95rem; /* base font size for mobile */
+}
+
+header {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* reduced from 100vh for mobile */
+  background: url('assets/fans.avif') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+
+header .content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 15px;
+}
+
+header h1 {
+  font-size: 2rem; /* reduced from 3rem for mobile */
+  font-weight: 800;
+  margin-bottom: 10px;
+
+  /* Gradient text */
+  background: linear-gradient(90deg, #e14abd, #425e91);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+header p {
+  font-size: 1rem; /* reduced from 1.2rem */
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px; /* reduced from 12px 25px */
+  background: #e14abd;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #c73da5;
+}
+
+section {
+  padding: 50px 5%; /* reduced from 80px 10% */
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 25px; /* reduced from 40px */
+  font-size: 1.5rem; /* reduced from 2rem */
+  font-weight: 700;
+  color: #333;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr; /* single column on mobile */
+  gap: 15px;
+}
+
+.feature {
+  background: white;
+  padding: 20px; /* reduced from 25px */
+  border-radius: 12px; /* reduced from 15px */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h3 {
+  font-size: 1.2rem; /* reduced from 1.4rem */
+  margin-bottom: 8px;
+  color: #e14abd;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+footer {
+  background: #111;
+  color: #bbb;
+  text-align: center;
+  padding: 20px 5%;
+}
+
+footer p {
+  font-size: 0.85rem; /* reduced from 0.9rem */
+}
+
+/* Benefits Page */
+.benefits-container {
+  display: grid;
+  grid-template-columns: 1fr; /* single column on mobile */
+  gap: 1.5rem; /* reduced from 2rem */
+  padding: 30px 5%;
+}
+
+/* Gradient Border Card */
+.benefit-card {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  padding: 20px; /* reduced from 25px */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+  z-index: 0;
+}
+
+/* Gradient border using pseudo-element */
+.benefit-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(90deg, #d53ac3, #7d1ede);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude; 
+  pointer-events: none;
+  z-index: -1;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-card h2 {
+  font-size: 1.3rem; /* reduced from 1.6rem */
+  margin-bottom: 6px;
+  color: #e14abd;
+}
+
+.reward-subheading {
+  font-size: 1rem; /* reduced from 1.2rem */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.benefit-card p {
+  line-height: 1.5;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* Hero section (shared across pages) */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* reduced from 100vh for mobile */
+  background: url('assets/fans.avif') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+
+/* Text sits above overlay */
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 0 15px;
+}
+
+.hero-title {
+  font-size: 2rem; /* reduced from 3rem for mobile */
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.hero-subtitle {
+  font-size: 1rem; /* reduced from 1.2rem */
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
+
+/* Mobile-specific hero adjustments */
+@media (max-width: 768px) {
+  .hero {
+    height: 40vh;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* App Info Sections */
+.app-section {
+  background: #f9fafb;
+  padding: 1.5rem; /* reduced from 2rem */
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.section-heading {
+  font-size: 1.3rem; /* reduced from 1.75rem */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+.section-subheading {
+  font-size: 1.1rem; /* reduced from 1.25rem */
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.section-text {
+  font-size: 0.95rem; /* reduced from 1rem */
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* Premium Section Styles */
+.premium-section {
+  margin: 30px 0;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+}
+
+.premium-heading {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  font-size: 1.5rem; /* reduced from 2rem */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.premium-container {
+  display: grid;
+  grid-template-columns: 1fr; /* single column on mobile */
+  gap: 20px;
+  justify-content: center;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.premium-card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px; /* reduced from 20px */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.premium-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 12px;
+  padding: 2px; /* reduced from 3px */
+  background: linear-gradient(135deg, #d53ac3, #7d1ede);
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude; 
+  pointer-events: none;
+}
+
+.premium-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.premium-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.premium-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.premium-card li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+/* Blog Layout */
+section .grid {
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Sidebar fine-tuning */
+aside {
+  position: relative; /* changed from sticky for mobile */
+  top: 0;
+  margin-top: 20px;
+}
+
+aside h3 {
+  color: #e14abd;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+aside p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+aside ul {
+  padding-left: 18px;
+}
+
+aside li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+/* Gradient Card Styles */
+.card-with-gradient {
+  position: relative;
+  border-radius: 12px;
+  padding: 18px; /* reduced from 25px */
+  text-align: left;
+  background: white;
+  border: 2px solid transparent;
+  
+  /* Use thin gradient border */
+  background-image: linear-gradient(white, white),
+                    linear-gradient(135deg, #d53ac3, #7d1ede);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-with-gradient:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.card-with-gradient h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.card-with-gradient h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.card-with-gradient p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.card-with-gradient ul {
+  padding-left: 18px;
+  margin-bottom: 12px;
+}
+
+.card-with-gradient li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+/* Gradient headings */
+.gradient-text {
+  background: linear-gradient(135deg, #d53ac3, #7d1ede);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tablet and larger screens */
+@media (min-width: 769px) {
+  .hero {
+    height: 100vh;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  section {
+    padding: 80px 10%;
+  }
+  
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+  
+  .benefits-container {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px 6%;
+  }
+  
+  .premium-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+}

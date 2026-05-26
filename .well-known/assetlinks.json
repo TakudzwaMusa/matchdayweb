@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.matchdaytechnologies.matchdaysuperfan",
+    "sha256_cert_fingerprints": ["F8:E6:AB:44:D6:6F:83:E8:2E:44:1C:90:62:C6:EB:FE:E0:0A:51:B8:EA:46:E9:FA:F5:BD:B8:AA:EA:5C:6A:10"]
+  }
+}]
