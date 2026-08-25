@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google-site-verification" content="88bV1kj4Km0CQkJIWnC6smvSxIIBrvwPRI1GK8TzSqg" />
+  <title>Matchday Superfan - Connect, Share, Experience</title>
+  <!-- Google Fonts & Tailwind + Custom -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --pink: #e14abd;
+      --blue: #425e91;
+      --gradient-start: #e14abd;
+      --gradient-end: #425e91;
+      --dark-bg: #0f172a;
+    }
+
+    /* modern gradient utilities */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    }
+
+    .gradient-border-card {
+      position: relative;
+      background: white;
+      border-radius: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    }
+
+    .gradient-border-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-overlay-dark {
+      background: linear-gradient(145deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 100%);
+    }
+
+    .btn-modern {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(95deg, var(--gradient-start), var(--gradient-end));
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px -8px rgba(225, 74, 189, 0.4);
+    }
+
+    .btn-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 25px -12px rgba(225, 74, 189, 0.5);
+    }
+
+    .feature-card-hover {
+      transition: all 0.3s ease;
+    }
+    .feature-card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 30px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-section {
+      min-height: 85vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('Assets/fans.avif') center/cover no-repeat;
+      background-attachment: fixed;
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        background-attachment: scroll;
+        min-height: 70vh;
+      }
+    }
+
+    /* custom scroll */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--gradient-start), var(--gradient-end));
+      border-radius: 10px;
+    }
+
+    /* Sidebar / card styling */
+    .insight-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      transition: all 0.25s;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    footer a {
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+    }
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(95deg, var(--gradient-start), var(--gradient-end));
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover:after {
+      width: 100%;
+    }
+
+    /* gallery preview image grid hover */
+    .gallery-preview-img {
+      transition: all 0.3s ease;
+      border-radius: 1rem;
+    }
+    .gallery-preview-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- MODERN NAVIGATION (persistent theme) -->
+  <nav class="glass-nav w-full fixed top-0 left-0 z-50 shadow-sm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-16 md:h-20">
+      <div class="flex items-center gap-3">
+        <img src="Assets/logo.png" alt="Matchday Superfan Logo" class="h-9 md:h-11 object-contain">
+        <span class="gradient-text text-xl md:text-2xl font-extrabold tracking-tight">MD Technologies</span>
+      </div>
+
+      <button id="nav-toggle" class="block md:hidden text-gray-800 focus:outline-none">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+
+      <ul id="nav-menu" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-16 left-0 w-full md:w-auto bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none shadow-lg md:shadow-none rounded-b-2xl md:rounded-none p-6 md:p-0 flex-col md:flex-row text-center space-y-4 md:space-y-0">
+        <li><a href="index.html" class="nav-link text-gray-800 hover:text-[#e14abd] font-medium transition">Home</a></li>
+        <li><a href="Benefits.html" class="nav-link text-gray-800 hover:text-[#e14abd] font-medium transition">Benefits</a></li>
+        <li><a href="AppInfo.html" class="nav-link text-gray-800 hover:text-[#e14abd] font-medium transition">App Info</a></li>
+        <li><a href="Gallery.html" class="nav-link text-gray-800 hover:text-[#e14abd] font-medium transition">Gallery</a></li>
+        <li><a href="Contact.html" class="nav-link text-gray-800 hover:text-[#e14abd] font-medium transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION (improved layout) -->
+  <section class="hero-section relative flex items-center justify-center text-white px-6 pt-28 md:pt-32">
+    <div class="absolute inset-0 hero-overlay-dark"></div>
+    <div class="relative z-10 max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 py-12">
+      <div class="lg:w-1/2 text-center lg:text-left">
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight drop-shadow-sm">Matchday <span class="gradient-text bg-white/10 inline-block">Superfan</span></h1>
+        <p class="hero-subtitle mt-4 text-lg md:text-xl text-gray-100 max-w-xl mx-auto lg:mx-0">The ultimate social hub where fans connect, share, and celebrate their passion.</p>
+        <a href="#intro" class="btn-modern mt-8 inline-flex">
+          Discover More <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+      <div class="lg:w-1/2 bg-black/40 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-2xl">
+        <p class="text-gray-100 leading-relaxed text-base md:text-lg">
+          <strong class="font-bold text-white">Matchday Superfan</strong> is the ultimate social hub where fans connect, share, and celebrate their passion.
+          Built by Matchday Technologies, the platform enhances matchday experiences while driving
+          engagement, rewards, and community growth through a freemium model.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro Section (clean) -->
+  <section id="intro" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <span class="text-sm uppercase tracking-wider gradient-text font-semibold">Welcome to the future</span>
+      <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-8 text-gray-900">Intro</h2>
+      <p class="text-base md:text-lg text-gray-700 leading-relaxed text-justify mx-auto max-w-3xl">
+        The Matchday SuperFan App is designed to promote stadium attendances by enhancing the fan’s match day experience and fundraising activities. The SuperFan App is rewards based, and operated on a ‘Freemium’ business model. This revolutionary App is an all encompassing tool which enhances the user’s match day experience through exciting features and provides the user with a user-profile and memorabilia with each event attended.
+      </p>
+    </div>
+  </section>
+
+  <!-- Company Overview + IT Services (improved grid + modern cards) -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-8">
+      <!-- Left main -->
+      <div class="lg:col-span-2 gradient-border-card p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-bold gradient-text mb-4">Company Background</h2>
+        <p class="text-gray-700 mb-4 leading-relaxed">Matchday Technologies develops digital platforms for sporting events, specializing in mobile applications and software solutions that enhance fan engagement, event management, and commercial partnerships.</p>
+        <div class="grid sm:grid-cols-2 gap-5 mt-5">
+          <div><h3 class="text-xl font-semibold text-[#425e91]">Mission</h3><p class="text-gray-600">To empower sports organizations and fans through seamless, real-time digital engagement platforms.</p></div>
+          <div><h3 class="text-xl font-semibold text-[#425e91]">Vision</h3><p class="text-gray-600">To be the leading provider of innovative sports technology solutions, driving growth in the global sports industry.</p></div>
+        </div>
+        <div class="mt-6"><h3 class="text-xl font-semibold mb-3 gradient-text">Services & Solutions</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-sm">FAN ENGAGEMENT PLATFORMS</span>
+            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">EVENT MANAGEMENT</span>
+            <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm">DATA ANALYTICS</span>
+            <span class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm">SPONSORSHIP SOLUTIONS</span>
+          </div>
+        </div>
+        <div class="mt-6"><h3 class="text-xl font-semibold mb-2 gradient-text">Target Market</h3><ul class="list-disc list-inside text-gray-700 space-y-1"><li>Professional sports teams & leagues</li><li>Event organizers & promoters</li><li>Sponsors & advertisers</li><li>Fans & stadium attendees</li></ul></div>
+      </div>
+      <!-- Right Sidebar -->
+      <aside class="insight-card shadow-md border border-gray-100">
+        <h3 class="text-2xl font-bold gradient-text mb-4">Technologies & Innovation</h3>
+        <ul class="space-y-2 text-gray-700"><li>✓ Artificial Intelligence & Machine Learning</li><li>✓ Augmented & Virtual Reality</li><li>✓ Blockchain for Secure Transactions</li><li>✓ Real-time Data Analytics & Cloud</li></ul>
+        <div class="mt-6"><h3 class="text-xl font-bold gradient-text mb-2">Achievements</h3><ul class="space-y-1 text-gray-600 text-sm"><li>• Deployed multiple sports engagement platforms</li><li>• Strategic alliances with key industry players</li><li>• Enhanced matchday experiences globally</li></ul></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- IT Services Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 gradient-border-card p-8">
+        <h2 class="text-2xl md:text-3xl font-bold gradient-text mb-5">IT Services</h2>
+        <p class="text-gray-700 mb-4">MTech delivers end-to-end IT solutions including digital transformation, cybersecurity, cloud services, infrastructure, data protection, and strategic IT projects. We provide scalable, secure, and strategic IT solutions tailored for businesses of all sizes.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+          <ul class="list-disc list-inside text-gray-700 space-y-1"><li>Digital Transformation</li><li>IT Management Solutions</li><li>Cyber Security & Threat</li><li>Microsoft Cloud Ecosystem</li></ul>
+          <ul class="list-disc list-inside text-gray-700 space-y-1"><li>Data Protection & Recovery</li><li>IT Infrastructure & Licensing</li><li>Voice & Video Platforms</li><li>Strategic IT Projects</li></ul>
+        </div>
+      </div>
+      <div class="gradient-border-card p-8">
+        <h3 class="text-xl font-bold gradient-text mb-3">Why Choose MTech?</h3>
+        <p class="text-gray-600">Proactive service, cutting-edge technology, and collaborative partnerships ensure your IT operations are future-ready and efficient.</p>
+        <h3 class="text-xl font-bold gradient-text mt-6 mb-2">Core Competencies</h3>
+        <ul class="list-disc list-inside text-gray-600"><li>End-to-end IT management</li><li>Data analytics & insights</li><li>Cloud computing & security</li><li>Event & fan engagement platforms</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Passion Profiles + two column section -->
+  <section class="py-20 bg-gray-50 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+      <div class="lg:w-1/2 gradient-border-card p-6">
+        <h2 class="text-2xl font-bold gradient-text mb-3">Passion Profiles</h2>
+        <p class="text-gray-700 mb-4">Users are profiled through passion profiles such as the most knowledgeable fans, feistiest fans, entertainers, magical fans, etc. Criteria include:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700"><ul class="list-disc pl-5 space-y-1"><li>Most passionate SuperFan?</li><li>Most loved sport?</li><li>Most passionate Nation?</li><li>Most passionate Team/Club?</li><li>Biggest sporting entertainers?</li><li>Most stylish SuperFans</li></ul><ul class="list-disc pl-5 space-y-1"><li>Best connoisseurs + Chefs</li><li>Most passionate Super Pets</li><li>Most sport loving families</li><li>World's most loved sporting personality</li></ul></div>
+      </div>
+      <div class="lg:w-1/2 gradient-border-card p-6">
+        <h2 class="text-2xl font-bold gradient-text mb-3">Passion Profiles Explained</h2>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3"><img src="Assets/inflatable.jpg" class="w-7 h-7 rounded-full"><div><p class="font-semibold">Passionless</p><p class="text-xs text-gray-500">If you disagree or consider content passionless</p></div></div>
+          <div class="flex items-center gap-3"><img src="Assets/round.png" class="w-7 h-7 rounded-full"><div><p class="font-semibold">Passionful</p><p class="text-xs text-gray-500">If you like and agree, passionful content</p></div></div>
+          <div class="flex items-center gap-3"><img src="Assets/red_heart.png" class="w-7 h-7"><div><p class="font-semibold">Red Heart</p><p class="text-xs text-gray-500">Strong appreciation and alignment</p></div></div>
+          <div class="flex items-center gap-3"><img src="Assets/gold_heart.png" class="w-7 h-7"><div><p class="font-semibold">Gold Heart</p><p class="text-xs text-gray-500">Exceptional, magical or special content</p></div></div>
+          <div class="flex items-center gap-3"><img src="Assets/fire.png" class="w-7 h-7"><div><p class="font-semibold">Feisty</p><p class="text-xs text-gray-500">Emotional, passionate</p></div></div>
+          <div class="flex items-center gap-3"><img src="Assets/laugh.png" class="w-7 h-7"><div><p class="font-semibold">Entertainer</p><p class="text-xs text-gray-500">Funny, amusing</p></div></div>
+          <div class="flex items-center gap-3"><img src="Assets/cap.png" class="w-7 h-7"><div><p class="font-semibold">Informative</p><p class="text-xs text-gray-500">Knowledgeable, expertise</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BEAUTIFUL APP GALLERY PREVIEW BLOCK (as requested) ========== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="gradient-border-card p-6 md:p-8">
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+          <div>
+            <span class="badge-pill inline-flex items-center gap-2 bg-pink-50 text-pink-600 px-4 py-1 rounded-full text-sm font-semibold"><i class="fa-regular fa-images"></i> Visual Journey</span>
+            <h2 class="text-3xl md:text-4xl font-bold gradient-text mt-3">App Gallery Highlights</h2>
+            <p class="text-gray-600 mt-2 max-w-2xl">Explore the most exciting features of Matchday Superfan — Fanbot, Passion Profiling, Fan Vocals and more.</p>
+          </div>
+          <a href="Gallery.html" class="inline-flex items-center gap-2 gradient-bg text-white px-5 py-2.5 rounded-full font-semibold shadow-md hover:shadow-xl transition-transform hover:-translate-y-1"><span>Full Gallery</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        
+        <!-- Gallery preview grid with stunning images from your assets -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-4">
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/fanbot.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img transition-all duration-300 group-hover:scale-[1.02]" alt="Fanbot">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Fanbot AI</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/passion profiling.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Passion Profiling">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Passion Profiling</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/superfan.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Superfan Feed">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Superfan Hub</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/Fan Vocals.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Fan Vocals">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Fan Vocals</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/matchup_types.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Matchups">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Matchup Types</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/quizes.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Quizzes">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Quizzes & Points</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/fanvibe.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Fanvibe">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Fanvibe Mood</p>
+          </div>
+          <div class="group cursor-pointer" onclick="window.location.href='Gallery.html'">
+            <img src="Assets/screenshots/Rewards.png" class="w-full h-40 object-cover rounded-xl shadow-md gallery-preview-img" alt="Rewards">
+            <p class="text-center text-sm font-medium mt-2 text-gray-700">Rewards System</p>
+          </div>
+        </div>
+        
+        <div class="text-center mt-8">
+          <a href="Gallery.html" class="inline-flex items-center gap-2 text-pink-600 font-semibold border-b-2 border-pink-300 hover:border-pink-600 transition">Discover all features <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Fans Love -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-12">Why Fans Love Matchday</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="gradient-border-card p-8 text-center feature-card-hover"><i class="fa-regular fa-comments text-4xl gradient-text mb-4"></i><h3 class="text-xl font-bold mb-2">Engage in Real-Time</h3><p class="text-gray-600">Connect with sport lovers across the world through your sporting passion.</p></div>
+        <div class="gradient-border-card p-8 text-center feature-card-hover"><i class="fa-solid fa-share-nodes text-4xl gradient-text mb-4"></i><h3 class="text-xl font-bold mb-2">Create & Share</h3><p class="text-gray-600">Post thoughts, media, reactions instantly. Connect with fans worldwide.</p></div>
+        <div class="gradient-border-card p-8 text-center feature-card-hover"><i class="fa-regular fa-gem text-4xl gradient-text mb-4"></i><h3 class="text-xl font-bold mb-2">Exclusive Experiences</h3><p class="text-gray-600">Contests, exclusive deals & unique fandom activities.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text">How It Works</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div><div class="w-20 h-20 mx-auto gradient-bg text-white rounded-2xl flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">1</div><h3 class="text-2xl font-semibold mb-2">Sign Up</h3><p>Create an account and choose fandoms.</p></div>
+        <div><div class="w-20 h-20 mx-auto gradient-bg text-white rounded-2xl flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">2</div><h3 class="text-2xl font-semibold mb-2">Connect</h3><p>Join fanboards and live interactions.</p></div>
+        <div><div class="w-20 h-20 mx-auto gradient-bg text-white rounded-2xl flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">3</div><h3 class="text-2xl font-semibold mb-2">Experience</h3><p>Enjoy rewards, contests, and exclusive content.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community + CTA -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold gradient-text mb-4">Join the Global Fan Community</h2>
+      <p class="text-xl text-gray-600 mb-8">Fandom connects fans worldwide into one vibrant, interactive community. Celebrate wins, debate hot topics, share unforgettable fan moments.</p>
+      <a href="javascript:void(0);" onclick="downloadAPK()" class="btn-modern text-lg px-10 py-3"><i class="fa-brands fa-android mr-2"></i> Get Started</a>
+    </div>
+  </section>
+
+  <!-- CTA Bottom -->
+  <section class="py-20 gradient-bg text-white text-center">
+    <h2 class="text-4xl font-bold mb-4">Join the Superfan Movement</h2>
+    <p class="text-xl mb-8 opacity-90">Be part of the future of fan engagement.</p>
+    <button onclick="downloadAPK()" class="bg-white text-[#e14abd] font-bold px-8 py-3 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1"><i class="fa-solid fa-download mr-2"></i> Get the App</button>
+  </section>
+
+  <!-- Footer refined -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div><h3 class="text-white text-xl font-bold mb-3">Matchday Superfan</h3><p>Where fans connect, share, and celebrate their passions together.</p></div>
+      <div><h3 class="text-white text-lg font-semibold mb-3">Quick Links</h3><ul class="space-y-2"><li><a href="index.html" class="hover:text-white transition">Home</a></li><li><a href="Benefits.html" class="hover:text-white">Benefits</a></li><li><a href="AppInfo.html" class="hover:text-white">App Info</a></li><li><a href="Gallery.html" class="hover:text-white">Gallery</a></li></ul></div>
+      <div><h3 class="text-white text-lg font-semibold mb-3">Stay Connected</h3><p>Follow us for updates and fan events.</p><div class="flex gap-4 mt-3"><a href="#" class="text-xl hover:text-white"><i class="fab fa-twitter"></i></a><a href="#" class="text-xl hover:text-white"><i class="fab fa-instagram"></i></a><a href="#" class="text-xl hover:text-white"><i class="fab fa-facebook"></i></a></div></div>
+    </div>
+    <div class="text-center text-gray-500 text-sm mt-10 border-t border-gray-800 pt-6">&copy; 2025 Matchday Superfan. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+      });
+    }
+    function downloadAPK() {
+      const button = event.currentTarget;
+      const originalText = button.innerHTML;
+      button.innerHTML = 'Downloading...';
+      button.disabled = true;
+      const awsUrl = 'https://s3.eu-west-2.amazonaws.com/superfan.media/App/superfan.apk';
+      const link = document.createElement('a');
+      link.href = awsUrl;
+      link.download = 'Matchday-Superfan.apk';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => {
+        button.innerHTML = originalText;
+        button.disabled = false;
+      }, 3000);
+      setTimeout(() => {
+        alert('📱 DOWNLOAD STARTED!\n\nAPK downloading now.\n\nHOW TO INSTALL:\n1. Open Downloads\n2. Tap on APK\n3. Allow from this source if needed\n4. Install & Open!\n🎉 Welcome Superfan!');
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
