@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Matchday Superfan - App Gallery | Interactive Features</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --pink: #e14abd;
+      --blue: #425e91;
+      --grad-start: #e14abd;
+      --grad-end: #425e91;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: #f8fafc;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--grad-start) 0%, var(--grad-end) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+    }
+
+    /* Modern Nav */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(95deg, var(--grad-start), var(--grad-end));
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover:after {
+      width: 100%;
+    }
+
+    /* Hero Parallax */
+    .gallery-hero {
+      background: linear-gradient(115deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.5) 100%), url('Assets/fans.avif');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+    }
+    @media (max-width: 768px) {
+      .gallery-hero {
+        background-attachment: scroll;
+      }
+    }
+
+    /* Feature card hover 3D */
+    .feature-card {
+      transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 25px 35px -12px rgba(225, 74, 189, 0.2), 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Gradient border container for consistency */
+    .gradient-border-card {
+      position: relative;
+      background: white;
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .gradient-border-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(225, 74, 189, 0.1), rgba(66, 94, 145, 0.1));
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--pink);
+    }
+
+    footer a {
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+<!-- ========== NAVBAR (enhanced, consistent) ========== -->
+<nav class="glass-nav w-full fixed top-0 left-0 z-50 transition-all duration-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-16 md:h-20">
+    <div class="flex items-center gap-3">
+      <img src="Assets/logo.png" alt="Matchday Superfan Logo" class="h-9 md:h-11 object-contain">
+      <span class="gradient-text text-xl md:text-2xl font-extrabold tracking-tight">MD Technologies</span>
+    </div>
+    <button id="nav-toggle" class="block md:hidden text-gray-800 focus:outline-none">
+      <i class="fa-solid fa-bars text-2xl"></i>
+    </button>
+    <ul id="nav-menu" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-16 left-0 w-full md:w-auto bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none shadow-lg md:shadow-none rounded-b-2xl md:rounded-none p-6 md:p-0 flex-col md:flex-row text-center space-y-4 md:space-y-0">
+      <li><a href="index.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">Home</a></li>
+      <li><a href="Benefits.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">Benefits</a></li>
+      <li><a href="AppInfo.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">App Info</a></li>
+      <li><a href="Gallery.html" class="nav-link text-[#e14abd] font-semibold">Gallery</a></li>
+      <li><a href="Contact.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ========== HERO SECTION ========== -->
+<header class="gallery-hero relative w-full h-[55vh] md:h-[70vh] flex items-center justify-center">
+  <div class="absolute inset-0 bg-black/30"></div>
+  <div class="relative text-center px-6 z-10">
+    <div class="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-semibold mb-4">Visual Journey</div>
+    <h1 class="text-white text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-2xl">App Gallery</h1>
+    <div class="h-1 w-20 gradient-bg mx-auto my-5 rounded-full"></div>
+    <p class="text-white text-lg md:text-2xl max-w-2xl mx-auto font-light">Explore Matchday Superfan — where passion meets innovation</p>
+  </div>
+</header>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main class="py-20 max-w-7xl mx-auto px-6 md:px-8 space-y-20">
+
+  <!-- Overview section (refined) -->
+  <section class="text-center max-w-4xl mx-auto">
+    <span class="text-sm uppercase tracking-wider gradient-text font-semibold">Discover features</span>
+    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-gray-800">Inside the Superfan Experience</h2>
+    <div class="gradient-border-card p-6 md:p-8 bg-white">
+      <p class="text-gray-700 text-lg leading-relaxed">
+        The App Gallery showcases the key features and experiences available in the Matchday Superfan platform. 
+        Each section highlights how fans can interact, express passion, and connect with their favourite teams, 
+        players, and communities in engaging and innovative ways.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== DYNAMIC FEATURE GRID (All original content preserved, layout enhanced) ========== -->
+  <div class="space-y-28">
+    
+    <!-- Fanbot -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="order-2 lg:order-1">
+        <div class="badge-icon mb-3"><i class="fa-solid fa-microphone-lines mr-2"></i> Voice AI</div>
+        <h2 class="text-3xl font-bold mb-4 gradient-text">Fanbot</h2>
+        <p class="text-gray-700 leading-relaxed">Fanbot is an interactive text-to-speech feature designed to actively engage fans through live, voice-driven quizzes and challenges. Instead of simply reading questions on screen, Fanbot speaks directly to users, creating a more immersive and personal matchday experience that feels like a real conversation rather than a standard quiz.</p>
+      </div>
+      <div class="order-1 lg:order-2"><img src="Assets/screenshots/fanbot.png" class="rounded-2xl shadow-xl w-full object-cover feature-card" alt="Fanbot"></div>
+    </div>
+
+    <!-- Fanbot Fanhub -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/fanbot_fanhub.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Fanbot Fanhub"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-regular fa-comment-dots mr-2"></i> Interactive Debates</div><h2 class="text-3xl font-bold mb-4 gradient-text">Fanbot Fanhub</h2><p class="text-gray-700">Fanbot dynamically presents two randomly selected players and asks comparison-based questions that challenge users to evaluate performance, style, impact, and legacy. As fans respond, Fanbot adapts the flow of questions, turning simple comparisons into interactive debates that test knowledge, passion, and fan instincts in real time.</p></div>
+    </div>
+
+    <!-- Fanbot Fanhub Matchup -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="order-2 lg:order-1"><div class="badge-icon mb-3"><i class="fa-solid fa-people-arrows"></i> Head-to-Head</div><h2 class="text-3xl font-bold mb-4 gradient-text">Fanbot Fanhub Matchup</h2><p class="text-gray-700">Fanbot introduces head-to-head player matchups by selecting two players at random and guiding fans through a series of thought-provoking questions. These comparisons encourage users to weigh strengths, playing styles, influence on the game, and overall contribution, transforming each interaction into a dynamic experience that measures fan insight, loyalty, and football intelligence.</p></div>
+      <div class="order-1 lg:order-2"><img src="Assets/screenshots/fanbot_fanhub2.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Fanbot Fanhub 2"></div>
+    </div>
+
+    <!-- Fanbot Voices -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/fanbot_voices.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Fanbot Voices"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-voice"></i> Voice Cloning</div><h2 class="text-3xl font-bold mb-4 gradient-text">Fanbot Voices</h2><p class="text-gray-700">Using advanced voice-cloning technology, fans can choose who Fanbot speaks as — whether it is their own voice, a loved one's voice, or a default Fanbot voice. This personalisation adds emotional depth and familiarity, making each interaction unique and far more engaging than traditional fan content.</p></div>
+    </div>
+
+    <!-- Matchup Types -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-chart-simple"></i> Comparison Tools</div><h2 class="text-3xl font-bold mb-4 gradient-text">Matchup Types</h2><p class="text-gray-700 mb-3">Matchup Types allow fans to create and share comparison-based posts that spark discussion, debate, and engagement across the community. These matchups let users explore different aspects of sport, culture, and fandom by placing two or more items side by side and inviting others to react and vote.</p><p class="text-gray-700">The platform supports five core matchup formats: Image matchups, FanTrack, Lineup matchups, Birthday matchups, and Top 5 lists — giving fans creative freedom to express opinions and passion.</p></div>
+      <div><img src="Assets/screenshots/matchup_types.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Matchup Types"></div>
+    </div>
+
+    <!-- Passion Profiling -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/passion profiling.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Passion Profiling"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-regular fa-heart"></i> Emotional Reactions</div><h2 class="text-3xl font-bold mb-4 gradient-text">Passion Profiling</h2><p class="text-gray-700">Passion Profiling allows fans to react to posts using expressive fan ratings that go beyond simple likes. Instead of a single reaction, users profile content based on emotion, energy, and value. Each post can be rated using profiles such as Feisty, Entertainer, Gold Heart, Red Heart, Informative, and Empty Heart — shaping fan identity and rankings.</p></div>
+    </div>
+
+    <!-- Polls -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-square-poll-vertical"></i> Quick Opinions</div><h2 class="text-3xl font-bold mb-4 gradient-text">Polls</h2><p class="text-gray-700">Polls give fans a quick and interactive way to share opinions. Users can create a poll by posting a question along with multiple answer options, allowing other fans to vote and instantly see how opinions compare. Whether predicting match results, choosing the better player, or settling fan debates, polls encourage participation and spark conversation.</p></div>
+      <div><img src="Assets/screenshots/poll.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Polls"></div>
+    </div>
+
+    <!-- Post Channels -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/post_channels.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Post Channels"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-layer-group"></i> Organized Content</div><h2 class="text-3xl font-bold mb-4 gradient-text">Post Channels</h2><p class="text-gray-700">Post Channels define where content appears within a Fandom. When users create a post, it is published into a specific channel, allowing fans to easily discover, follow, and engage with content that matches their interests. Channels help organise discussions, media, and matchday moments.</p></div>
+    </div>
+
+    <!-- Standard Post -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><div class="badge-icon mb-3"><i class="fa-regular fa-image"></i> Visual Storytelling</div><h2 class="text-3xl font-bold mb-4 gradient-text">Standard Post</h2><p class="text-gray-700">Standard Posts are the most common type of content shared on the platform. This format allows users to publish media-only content such as images, GIFs, and videos, making it ideal for sharing moments, reactions, and visual highlights. Standard Posts encourage fast engagement and smooth scrolling while allowing fans to express themselves visually.</p></div>
+      <div><img src="Assets/screenshots/standard.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Standard"></div>
+    </div>
+
+    <!-- Standard Post Topics -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/standard_post_topic.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Standard Post Topic"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-tag"></i> Smart Categorization</div><h2 class="text-3xl font-bold mb-4 gradient-text">Standard Post Topics</h2><p class="text-gray-700">Standard Post Topics are predefined themes that help categorise and organise content across fandoms. Created and managed by SuperFans and Fandom Captains, topics make it easier for users to filter content, discover relevant conversations, and engage with posts that align with their passions or matchday focus.</p></div>
+    </div>
+
+    <!-- Presets -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><div class="badge-icon mb-3"><i class="fa-regular fa-pen-to-square"></i> Quick Prompts</div><h2 class="text-3xl font-bold mb-4 gradient-text">Presets</h2><p class="text-gray-700">Presets are pre-written post descriptions designed to help users create engaging content with ease. They act as guided prompts for fans who may be unsure of what to write or want inspiration when sharing a post. By selecting a preset, users can quickly add context, spark conversation, and increase engagement.</p></div>
+      <div><img src="Assets/screenshots/standard2.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Standard 2"></div>
+    </div>
+
+    <!-- Superfan -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/superfan.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Superfan"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-house-chimney"></i> Home Feed</div><h2 class="text-3xl font-bold mb-4 gradient-text">Superfan</h2><p class="text-gray-700">Superfan is the main home experience of the app, bringing together a dynamic mix of posts, matchups, polls, and fan content from across the platform. It serves as the central feed where users can scroll, discover trending moments, and stay connected to everything happening within their favourite fandoms — even when not at the stadium.</p></div>
+    </div>
+
+    <!-- Super Sub -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-face-smile"></i> Face Swap</div><h2 class="text-3xl font-bold mb-4 gradient-text">Super Sub</h2><p class="text-gray-700">Super Sub unlocks creative fan experiences that go beyond standard interactions, allowing users to place themselves directly into the action. One of its key features is face swap technology, which lets fans swap faces with players or loved ones to create fun, shareable, and highly personalised content. These creations turn imagination into interactive fan moments.</p></div>
+      <div><img src="Assets/screenshots/supersub.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Super Sub"></div>
+    </div>
+
+    <!-- Quizzes -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><img src="Assets/screenshots/quizes.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Quizzes"></div>
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-brain"></i> Test Your Knowledge</div><h2 class="text-3xl font-bold mb-4 gradient-text">Quizzes</h2><p class="text-gray-700">Quizzes give fans a fun and competitive way to test their knowledge while earning points for correct answers. Each quiz consists of multiple questions covering players, teams, matches, and general fan knowledge. Correct answers earn points that contribute to overall fan rankings and leaderboard positions, turning knowledge into rewards.</p></div>
+    </div>
+
+    <!-- Player Rating -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div><div class="badge-icon mb-3"><i class="fa-solid fa-star"></i> Performance Voting</div><h2 class="text-3xl font-bold mb-4 gradient-text">Player Rating</h2><p class="text-gray-700">Player Rating allows fans to rate individual player performances during a match using a simple five-star system. This gives supporters a direct voice in evaluating how players performed. Fan ratings help shape community-driven insights, highlight standout performances, and reflect overall fan sentiment for each match.</p></div>
+      <div><img src="Assets/screenshots/player rating.png" class="rounded-2xl shadow-xl w-full feature-card" alt="Player Rating"></div>
+    </div>
+
+    <!-- Fanvibe + Mood + Fanboards + Daily Fantracks -->
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="gradient-border-card p-6 bg-white"><div class="flex items-center gap-3 mb-3"><i class="fa-regular fa-face-smile text-3xl gradient-text"></i><h3 class="text-2xl font-bold gradient-text">Fanvibe</h3></div><p class="text-gray-700">Fanvibe lets fans express how they are feeling at different stages of the matchday experience. Users can set their vibe before the match, during the match, after the final whistle, and even on non-matchdays — capturing the emotional pulse of the fanbase.</p><img src="Assets/screenshots/fanvibe.png" class="mt-4 rounded-xl shadow-md"></div>
+      <div class="gradient-border-card p-6 bg-white"><div class="flex items-center gap-3 mb-3"><i class="fa-regular fa-message text-3xl gradient-text"></i><h3 class="text-2xl font-bold gradient-text">Mood</h3></div><p class="text-gray-700">Mood allows users to express how they are feeling using simple, recognisable icons. These icons provide a quick and visual way to share emotions without needing to type, adding personality and emotional context to user activity.</p><img src="Assets/screenshots/mood.png" class="mt-4 rounded-xl shadow-md"></div>
+      <div class="gradient-border-card p-6 bg-white"><div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-ranking-star text-3xl gradient-text"></i><h3 class="text-2xl font-bold gradient-text">Fanboards</h3></div><p class="text-gray-700">Fanboards display ranked lists of users based on points earned through participation across the fandom — quizzes, ratings, interactions. Fanboards also highlight users eligible for rewards.</p><img src="Assets/screenshots/fanboard.png" class="mt-4 rounded-xl shadow-md"></div>
+      <div class="gradient-border-card p-6 bg-white"><div class="flex items-center gap-3 mb-3"><i class="fa-solid fa-music text-3xl gradient-text"></i><h3 class="text-2xl font-bold gradient-text">Daily Fantracks</h3></div><p class="text-gray-700">Daily Fantracks delivers a fresh selection of music tracks every day that fans can enjoy and share within the fandom. Fans can request posts, creating a shared music experience.</p><img src="Assets/screenshots/daily fantracks.png" class="mt-4 rounded-xl shadow-md"></div>
+    </div>
+
+    <!-- Claim Options, Claiming from Sponsors, Fan Vocals, Fanbiz, Fandom Stadium, Fandom, Loved Ones, Matchup Modal, Rewards, Sponsor Offers, Throwback Matches all in clean grid -->
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Claim Options</h3><p class="text-gray-600">Claim rewards via Commercial Partner, Match Sponsor, Superfan Pass, Expro Pass, NextGen, FanPro, FanExec.</p><img src="Assets/screenshots/Claim Options.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Claiming from Sponsors</h3><p class="text-gray-600">Exclusive offers from Shell, Pick n Pay, Total Energies, West Coast Car Hire & more.</p><img src="Assets/screenshots/Claiming from Sponsors.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Fan Vocals</h3><p class="text-gray-600">Sing the anthem, earn points based on noise level, community voting, rewards.</p><img src="Assets/screenshots/Fan Vocals.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Fanbiz</h3><p class="text-gray-600">Market your business, build brand within fan community, reach engaged sports audience.</p><img src="Assets/screenshots/Fanbiz.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Fandom Stadium</h3><p class="text-gray-600">Premium subscription, unlimited credits, exclusive content, priority access.</p><img src="Assets/screenshots/Fandom Stadium.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Fandom</h3><p class="text-gray-600">Dedicated communities, custom channels, leaderboards, matchday tools.</p><img src="Assets/screenshots/Fandom.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Loved Ones</h3><p class="text-gray-600">Add relatives, access favourites: books, music, movies, lineups.</p><img src="Assets/screenshots/Loved Ones.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Matchup Modals</h3><p class="text-gray-600">AI-powered content suggestions, optional prompts to inspire posts.</p><img src="Assets/screenshots/Matchup Modal.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Rewards</h3><p class="text-gray-600">Points-based program: quizzes, passion profiling, popular content, sponsor claims.</p><img src="Assets/screenshots/Rewards.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6"><h3 class="text-2xl font-bold gradient-text mb-3">Sponsor Offers</h3><p class="text-gray-600">Discount vouchers, merchandise, food & beverage, transportation deals.</p><img src="Assets/screenshots/Sponsor Offers.png" class="mt-3 rounded-xl"></div>
+      <div class="gradient-border-card p-6 col-span-1 md:col-span-2"><h3 class="text-2xl font-bold gradient-text mb-3">Throwback Matches</h3><p class="text-gray-600">Relive classic moments, tag historic matches, engage in nostalgic discussions with rich context.</p><img src="Assets/screenshots/thowback matches.png" class="mt-3 rounded-xl max-h-80 object-cover w-full"></div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer refined -->
+<footer class="bg-gray-900 text-gray-400 py-12 mt-12">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+    <div><h3 class="text-white text-xl font-bold mb-3">Matchday Superfan</h3><p>Where fans connect, share, and celebrate their passions together.</p></div>
+    <div><h3 class="text-white text-lg font-semibold mb-3">Quick Links</h3><ul class="space-y-2"><li><a href="index.html" class="hover:text-white transition">Home</a></li><li><a href="Benefits.html" class="hover:text-white">Benefits</a></li><li><a href="Gallery.html" class="hover:text-white">Gallery</a></li><li><a href="Contact.html" class="hover:text-white">Contact</a></li><li><a href="Privacy.html" class="hover:text-white transition">Privacy Policy</a></li></ul></div>
+    <div><h3 class="text-white text-lg font-semibold mb-3">Stay Connected</h3><p>Follow us for updates and fan events.</p><div class="flex gap-4 mt-3"><a href="#" class="text-xl hover:text-white"><i class="fab fa-twitter"></i></a><a href="#" class="text-xl hover:text-white"><i class="fab fa-instagram"></i></a><a href="#" class="text-xl hover:text-white"><i class="fab fa-facebook"></i></a></div></div>
+  </div>
+  <div class="text-center text-gray-500 text-sm mt-10 border-t border-gray-800 pt-6">&copy; 2025 Matchday Superfan. All rights reserved.</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.toggle('hidden'));
+</script>
+</body>
+</html>

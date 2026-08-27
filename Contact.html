@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Matchday Superfan - Contact Us | Get in Touch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --pink: #e14abd;
+      --blue: #425e91;
+      --grad-start: #e14abd;
+      --grad-end: #425e91;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--grad-start) 0%, var(--grad-end) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(95deg, var(--grad-start), var(--grad-end));
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover:after, .nav-link.active:after {
+      width: 100%;
+    }
+    .nav-link.active {
+      color: var(--pink);
+    }
+
+    .contact-hero {
+      background: linear-gradient(115deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.55) 100%), url('Assets/fans.avif');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+    }
+    @media (max-width: 768px) {
+      .contact-hero {
+        background-attachment: scroll;
+      }
+    }
+
+    .gradient-border-card {
+      position: relative;
+      background: white;
+      border-radius: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    }
+
+    .gradient-border-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .btn-modern {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(95deg, var(--grad-start), var(--grad-end));
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px -8px rgba(225, 74, 189, 0.4);
+    }
+
+    .btn-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 25px -12px rgba(225, 74, 189, 0.5);
+    }
+
+    .input-focus-ring:focus {
+      ring: 2px solid var(--pink);
+      border-color: var(--pink);
+      outline: none;
+    }
+
+    .social-icon {
+      transition: all 0.2s ease;
+    }
+    .social-icon:hover {
+      transform: translateY(-3px);
+      color: var(--pink);
+    }
+
+    footer a {
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (consistent with homepage) -->
+  <nav class="glass-nav w-full fixed top-0 left-0 z-50 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-16 md:h-20">
+      <div class="flex items-center gap-3">
+        <img src="Assets/logo.png" alt="Matchday Superfan Logo" class="h-9 md:h-11 object-contain">
+        <span class="gradient-text text-xl md:text-2xl font-extrabold tracking-tight">MD Technologies</span>
+      </div>
+
+      <button id="nav-toggle" class="block md:hidden text-gray-800 focus:outline-none">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+
+      <ul id="nav-menu" class="hidden md:flex md:items-center md:gap-8 absolute md:static top-16 left-0 w-full md:w-auto bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none shadow-lg md:shadow-none rounded-b-2xl md:rounded-none p-6 md:p-0 flex-col md:flex-row text-center space-y-4 md:space-y-0">
+        <li><a href="index.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">Home</a></li>
+        <li><a href="Benefits.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">Benefits</a></li>
+        <li><a href="AppInfo.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">App Info</a></li>
+        <li><a href="Gallery.html" class="nav-link text-gray-700 hover:text-[#e14abd] font-medium">Gallery</a></li>
+        <li><a href="Contact.html" class="nav-link text-[#e14abd] font-semibold active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section (enhanced) -->
+  <header class="contact-hero relative w-full h-[55vh] md:h-[65vh] flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="relative text-center px-6 z-10">
+      <div class="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-semibold mb-4">
+        <i class="fa-regular fa-message mr-2"></i> We're Here for You
+      </div>
+      <h1 class="text-white text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-2xl">Contact Us</h1>
+      <div class="h-1 w-20 gradient-bg mx-auto my-5 rounded-full"></div>
+      <p class="text-white text-lg md:text-xl max-w-2xl mx-auto font-light">
+        We’d love to hear from you. Whether you have a question, feedback, partnership idea, or need support,
+        the Matchday Superfan team is here to help.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content (Enhanced with better spacing & cards) -->
+  <main class="py-20 max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-5 gap-10">
+      
+      <!-- LEFT: Contact Form (3 columns) -->
+      <div class="lg:col-span-3">
+        <div class="gradient-border-card p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center shadow-md">
+              <i class="fa-regular fa-paper-plane text-white text-lg"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold gradient-text">Send a Message</h2>
+          </div>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Use the contact form to reach out to us directly. Simply provide your name, email address, subject,
+            and message, and one of our team members will get back to you as soon as possible.
+          </p>
+
+          <form id="contactForm" class="space-y-5">
+            <div>
+              <label for="name" class="block font-semibold mb-2 text-gray-700"><i class="fa-regular fa-user mr-2 text-pink-500"></i>Full Name</label>
+              <input type="text" id="name" placeholder="John Doe" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-pink-400 outline-none transition shadow-sm">
+            </div>
+
+            <div>
+              <label for="email" class="block font-semibold mb-2 text-gray-700"><i class="fa-regular fa-envelope mr-2 text-pink-500"></i>Email Address</label>
+              <input type="email" id="email" placeholder="hello@matchday.com" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-pink-400 outline-none transition shadow-sm">
+            </div>
+
+            <div>
+              <label for="subject" class="block font-semibold mb-2 text-gray-700"><i class="fa-regular fa-tag mr-2 text-pink-500"></i>Subject</label>
+              <input type="text" id="subject" placeholder="Partnership / Support / Feedback" class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-pink-400 outline-none transition shadow-sm">
+            </div>
+
+            <div>
+              <label for="message" class="block font-semibold mb-2 text-gray-700"><i class="fa-regular fa-comment-dots mr-2 text-pink-500"></i>Message</label>
+              <textarea id="message" rows="5" placeholder="Tell us how we can help..." class="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-400 focus:border-pink-400 outline-none transition shadow-sm resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="btn-modern w-full justify-center py-3 text-base">
+              <i class="fa-regular fa-paper-plane mr-2"></i> Send Message
+            </button>
+            <p id="formStatus" class="text-sm text-center mt-3 hidden"></p>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Info & Quick Links (2 columns) -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- What You Can Contact Us About -->
+        <div class="gradient-border-card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center">
+              <i class="fa-regular fa-circle-question text-pink-600 text-xl"></i>
+            </div>
+            <h2 class="text-xl font-bold gradient-text">What You Can Contact Us About</h2>
+          </div>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-2"><i class="fa-regular fa-circle-check text-pink-500 mt-1"></i><span>General enquiries about Matchday Superfan</span></li>
+            <li class="flex items-start gap-2"><i class="fa-regular fa-circle-check text-pink-500 mt-1"></i><span>Feedback and feature suggestions</span></li>
+            <li class="flex items-start gap-2"><i class="fa-regular fa-circle-check text-pink-500 mt-1"></i><span>Technical support or app-related issues</span></li>
+            <li class="flex items-start gap-2"><i class="fa-regular fa-circle-check text-pink-500 mt-1"></i><span>Partnership, sponsorship, or collaboration opportunities</span></li>
+            <li class="flex items-start gap-2"><i class="fa-regular fa-circle-check text-pink-500 mt-1"></i><span>Media and press enquiries</span></li>
+          </ul>
+        </div>
+
+        <!-- Our Commitment -->
+        <div class="gradient-border-card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+              <i class="fa-regular fa-handshake text-blue-600 text-xl"></i>
+            </div>
+            <h2 class="text-xl font-bold gradient-text">Our Commitment</h2>
+          </div>
+          <p class="text-gray-600 leading-relaxed">
+            We aim to respond to all messages promptly and provide clear, helpful support. Your feedback helps us
+            improve the Matchday Superfan experience and build a stronger fan community.
+          </p>
+        </div>
+
+        <!-- Stay Connected + Socials -->
+        <div class="gradient-border-card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+              <i class="fa-regular fa-share-nodes text-purple-600 text-xl"></i>
+            </div>
+            <h2 class="text-xl font-bold gradient-text">Stay Connected</h2>
+          </div>
+          <p class="text-gray-600 mb-5">
+            Follow Matchday Superfan on our social media channels to stay updated on new features,
+            events, and fan experiences.
+          </p>
+          <div class="flex gap-4 justify-center md:justify-start">
+            <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-pink-500 hover:to-blue-500 hover:text-white transition-all duration-300 social-icon"><i class="fab fa-twitter text-xl"></i></a>
+            <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-pink-500 hover:to-blue-500 hover:text-white transition-all duration-300 social-icon"><i class="fab fa-instagram text-xl"></i></a>
+            <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-pink-500 hover:to-blue-500 hover:text-white transition-all duration-300 social-icon"><i class="fab fa-facebook-f text-xl"></i></a>
+            <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gradient-to-r hover:from-pink-500 hover:to-blue-500 hover:text-white transition-all duration-300 social-icon"><i class="fab fa-linkedin-in text-xl"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Info Card -->
+        <div class="bg-gradient-to-r from-pink-50 to-blue-50 rounded-2xl p-6 border border-pink-100">
+          <div class="flex items-center gap-3 mb-3">
+            <i class="fa-regular fa-clock text-pink-600 text-xl"></i>
+            <h3 class="font-bold text-gray-800">Response Time</h3>
+          </div>
+          <p class="text-sm text-gray-600">We typically respond within 24-48 hours on business days. For urgent technical issues, please mention "URGENT" in your subject line.</p>
+          <div class="mt-4 pt-3 border-t border-pink-100">
+            <div class="flex items-center gap-2 text-sm"><i class="fa-regular fa-envelope text-pink-500"></i> <span class="text-gray-600">support@matchdaysuperfan.com</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer (consistent with homepage) -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-white text-xl font-bold mb-3">Matchday Superfan</h3>
+        <p>Where fans connect, share, and celebrate their passions together.</p>
+      </div>
+      <div>
+        <h3 class="text-white text-lg font-semibold mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+          <li><a href="Benefits.html" class="hover:text-white transition">Benefits</a></li>
+          <li><a href="AppInfo.html" class="hover:text-white transition">App Info</a></li>
+          <li><a href="Gallery.html" class="hover:text-white transition">Gallery</a></li>
+          <li><a href="Privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white text-lg font-semibold mb-3">Stay Connected</h3>
+        <p>Follow us for updates and fan events.</p>
+        <div class="flex gap-4 mt-3">
+          <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-gray-500 text-sm mt-10 border-t border-gray-800 pt-6">
+      &copy; 2025 Matchday Superfan. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Contact form handler (demo with validation)
+    const form = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('formStatus');
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        if (!name || !email || !subject || !message) {
+          statusDiv.textContent = '❌ Please fill in all fields.';
+          statusDiv.classList.remove('hidden', 'text-green-600');
+          statusDiv.classList.add('text-red-500', 'block');
+          return;
+        }
+        
+        if (!email.includes('@') || !email.includes('.')) {
+          statusDiv.textContent = '❌ Please enter a valid email address.';
+          statusDiv.classList.remove('hidden', 'text-green-600');
+          statusDiv.classList.add('text-red-500', 'block');
+          return;
+        }
+        
+        // Simulate sending (demo)
+        statusDiv.textContent = '📨 Sending your message...';
+        statusDiv.classList.remove('hidden', 'text-red-500');
+        statusDiv.classList.add('text-pink-600', 'block');
+        
+        setTimeout(() => {
+          statusDiv.innerHTML = '✅ Message sent successfully! Our team will get back to you soon. 🎉';
+          statusDiv.classList.remove('text-pink-600');
+          statusDiv.classList.add('text-green-600');
+          form.reset();
+          
+          setTimeout(() => {
+            statusDiv.classList.add('hidden');
+          }, 5000);
+        }, 1500);
+      });
+    }
+  </script>
+
+</body>
+</html>
